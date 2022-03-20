@@ -1,0 +1,21 @@
+﻿@page
+@model WebApp.Pages.Create.CreateQuestionModel
+@{
+}
+<h1>@Model.Quiz.Name</h1>
+
+<div class="row">
+<div class="col-md-4">
+    <form method="post">
+        <div class="form-group">
+            <label for="Name">Question</label>
+            <input asp-for="Name" class="form-control" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="QuizId" class="form-control" value="@Model.id">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Question</button>
+    </form>
+</div>
+</div>

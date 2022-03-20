@@ -1,0 +1,22 @@
+﻿@page
+@model WebApp.Pages.Create.CreateAnswerModel
+@{
+}
+
+<h1>@Model.Question.QuestionName</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Name">Answer</label>
+        <input asp-for="Text" class="form-control" placeholder="" required>
+    </div>
+    <div>
+        <label for="Correct">This answer is correct</label>
+        <input type="checkbox" name="Correct" value="1">
+    </div>
+    <div class="form-group">
+        <input type="hidden" asp-for="QuestionId" class="form-control" value="@Model.Id">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Answer</button>
+</form>

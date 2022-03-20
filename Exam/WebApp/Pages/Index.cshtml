@@ -1,0 +1,103 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">KTAMMA QUIZZES</h1>
+</div>
+<h1>Quizzes</h1>
+<p>
+    <a asp-page="./Quizzes/Create">Create New</a>
+</p>
+
+<form method="get">
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="searchName" class="form-label">Quiz name</label>
+                <input type="text" class="form-control" id="searchName" name="searchName" placeholder="Insert quiz name/description" value="@Model.SearchName">
+            </div>
+        </div>
+        <div class="col-2 position-relative">
+            <div class="form-group position-absolute bottom-0 start-0">
+                <input type="submit" value="Search" name="action" class="btn btn-primary"/>
+                @if (Model.SearchName != null)
+                {
+                    <input type="submit" value="Clear" name="action" class="btn btn-warning"/>
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quizzes![0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quizzes![0].Description)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Quizzes!)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-page="./Play/PlayQuiz" asp-route-id="@item.Id" asp-route-n="1">Play</a> |
+                <a asp-page="./Edit/EditQuiz" asp-route-id="@item.Id">Add questions</a> |
+                <a asp-page="./Quizzes/Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+            <td>
+
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Statistics</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quiz![0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quiz![0].TimesCompleted)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Quiz!)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimesCompleted)
+            </td>
+            <td>
+                <a asp-page="./Questions/Index" asp-route-id="@item.Id">Question statistics</a>
+            </td>
+
+
+        </tr>
+    }
+    </tbody>
+</table>

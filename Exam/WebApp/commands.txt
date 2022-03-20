@@ -1,0 +1,15 @@
+
+Microsoft.EntityFrameworkCore.Design
+
+dotnet ef migrations --project WebApp --startup-project WebApp  add Initial
+dotnet ef database --project WebApp --startup-project WebApp update
+
+
+cd webapp
+ Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+
+
+dotnet aspnet-codegenerator razorpage -m Quiz -outDir Pages/Quizzes -dc AppDbContext -udl --referenceScriptLibraries -f
+dotnet aspnet-codegenerator razorpage -m Question -outDir Pages/Questions -dc AppDbContext -udl --referenceScriptLibraries -f
+dotnet aspnet-codegenerator razorpage -m Answer -outDir Pages/Answers -dc AppDbContext -udl --referenceScriptLibraries -f

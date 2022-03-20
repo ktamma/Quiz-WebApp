@@ -1,0 +1,46 @@
+@page
+@model WebApp.Pages_Answers.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Answer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Answer.Question)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model!.Answer!.Question!.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Answer.AnswerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Answer.AnswerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Answer.IsCorrect)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Answer.IsCorrect)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Answer.TimesSelected)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Answer.TimesSelected)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Answer.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

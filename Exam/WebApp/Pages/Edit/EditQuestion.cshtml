@@ -1,0 +1,42 @@
+﻿@page
+@model WebApp.Pages.Edit.EditQuestionModel
+@{
+
+}
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Model!.Question!.QuestionName
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Answers!)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerName)
+            </td>
+            <td>
+                <a asp-page="../Answers/Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="../Statistics/QuestionStatistics" asp-route-id="@item.Id">Statistics</a> |
+            </td>
+            <td>
+                <form method="post">
+                    <input type="hidden" asp-for="DeleteID" class="form-control" value="@item.Id">
+                    <input type="hidden" asp-for="ReturnID" class="form-control" value="@Model.Question!.Id">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-page="../Create/CreateAnswer" asp-route-id="@Model.Question!.Id" style="float:left">Add New Answer</a>
+
+    <a asp-page="./EditQuiz" asp-route-id="@Model.Question!.QuizId" style="float:right">Back to the Quiz</a>
+</div>

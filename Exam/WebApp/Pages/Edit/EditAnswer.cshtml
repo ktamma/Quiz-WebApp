@@ -1,0 +1,27 @@
+﻿@page
+@model WebApp.Pages.Edit.EditAnswerModel
+@{
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="Name">Answer</label>
+        <input asp-for="AnswerName" class="form-control" value="@(Model.Answer!.AnswerName)" required>
+    </div>
+    <div>
+        <label for="Correct">This answer is correct</label>
+        @if (Model.Answer.IsCorrect == 0)
+        {
+            <input type="checkbox" name="Correct" value="1">
+        }
+        else
+        {
+            <input type="checkbox" name="Correct" value="1" checked="checked">
+        }
+
+    </div>
+
+    <button type="submit">Update</button>
+</form>
+
+

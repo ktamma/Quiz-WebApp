@@ -1,0 +1,56 @@
+﻿@page
+@model WebApp.Pages.Play.ResultsModel
+@functions
+{ string GetCorrectAnswers(List<Domain.Answer> orig,int questionID)
+    {
+        List<Domain.Answer> correct = new List<Domain.Answer>();
+        foreach (var answer in orig)
+        {
+            if(answer.IsCorrect == 1 && answer.QuestionId == questionID)
+            {
+                correct.Add(answer);
+            }
+        }
+        String res = "";
+        foreach (var answer in correct)
+        {
+            res = res + answer.AnswerName + ",";
+        }
+      try
+      {
+          return res.Substring(0, res.Length - 1);
+      }
+      catch (Exception e)
+      {
+
+          return "No Correct answer!";
+      }
+    }
+    bool playerAnswerCorrect(Domain.Question question,List<Domain.Answer> answers,int answerID)
+    {
+        foreach (var answer in answers)
+        {
+            if (answer.Id == answerID && answer.IsCorrect == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    }
+
+
+<div>Quiz Completed</div>
+<div>Results: @Model.correct / @Model.Questions!.Count</div>
+@foreach (var question in Model.Questions!)
+{
+    @if (playerAnswerCorrect(question, Model.Answers!, Model.results![question.Id]))
+    {
+    <div>@question.QuestionName: Correct Answer</div>
+    }
+    else { 
+        <div>@question.QuestionName: Incorrect. Your Answer: @Model.Answers!.Find(x => x.Id == Model.results[question.Id])!.AnswerName . Correct Answer(s): @GetCorrectAnswers(Model.Answers, question.Id)</div>
+    }
+  
+}
+<a href="../index">Back to Main Menu</a>

@@ -1,0 +1,24 @@
+﻿@page
+@model WebApp.Pages.Play.PlayQuizModel
+@{
+}
+
+<form method="post">
+    <h2>@(Model.Question!.QuestionName)</h2>
+    @foreach (var item in Model!.Question!.Answers!)
+    {<div>
+            <input type="radio" id="@(item.Id)" name="Answer" value="@(item.Id)" checked="checked" size="20">
+            <label for="@(item.Id)">@(item.AnswerName)</label>
+            <br>
+        </div>
+    }
+<div class="form-group">
+    <input type="hidden" asp-for="QuizID" class="form-control" value="@Model.id">
+    @if (Model.game != null) { 
+         <input type="hidden" asp-for="GameID" class="form-control" value="@Model.game">
+    
+                               }
+    <input type="hidden" asp-for="NextQuestion" class="form-control" value="@(Model.n + 1)">
+</div>
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
